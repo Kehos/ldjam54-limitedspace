@@ -1,9 +1,77 @@
 [gd_scene load_steps=3 format=3 uid="uid://cu7av6n17dgcx"]
 
 [ext_resource type="Script" path="res://scripts/Game/Game.gd" id="1_my73j"]
-[ext_resource type="PackedScene" uid="uid://dov6v0cosov35" path="res://scenes/UI/GameUI.tscn" id="2_pp6a4"]
+[ext_resource type="Script" path="res://scripts/UI/GameUI.gd" id="2_xpvnd"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_my73j")
 
-[node name="GameUI" parent="." instance=ExtResource("2_pp6a4")]
+[node name="GameUI" type="CanvasLayer" parent="."]
+script = ExtResource("2_xpvnd")
+
+[node name="RoomLabel" type="Label" parent="GameUI"]
+offset_left = 502.0
+offset_top = 281.0
+offset_right = 647.0
+offset_bottom = 307.0
+size_flags_horizontal = 4
+text = "Room X: Door type"
+
+[node name="PlayerLabel" type="Label" parent="GameUI"]
+offset_left = 521.0
+offset_top = 311.0
+offset_right = 630.0
+offset_bottom = 337.0
+size_flags_horizontal = 4
+text = "Player holds X"
+
+[node name="MarginContainer" type="MarginContainer" parent="GameUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameUI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="Item1" type="Button" parent="GameUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Item 1"
+
+[node name="Item2" type="Button" parent="GameUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Item 1"
+
+[node name="Item3" type="Button" parent="GameUI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Item 1"
+
+[node name="OpenDoorButton" type="Button" parent="GameUI"]
+offset_left = 464.0
+offset_top = 414.0
+offset_right = 568.0
+offset_bottom = 445.0
+text = "OPEN DOOR"
+
+[node name="NextRoomButton" type="Button" parent="GameUI"]
+visible = false
+offset_left = 594.0
+offset_top = 414.0
+offset_right = 698.0
+offset_bottom = 445.0
+text = "NEXT ROOM"
+
+[connection signal="item_picked" from="GameUI" to="." method="_on_canvas_layer_item_picked"]
+[connection signal="pressed" from="GameUI/MarginContainer/HBoxContainer/Item1" to="GameUI" method="_on_item_1_pressed"]
+[connection signal="pressed" from="GameUI/MarginContainer/HBoxContainer/Item2" to="GameUI" method="_on_item_2_pressed"]
+[connection signal="pressed" from="GameUI/MarginContainer/HBoxContainer/Item3" to="GameUI" method="_on_item_3_pressed"]
+[connection signal="pressed" from="GameUI/OpenDoorButton" to="." method="_on_open_door_button_pressed"]
+[connection signal="pressed" from="GameUI/NextRoomButton" to="." method="_on_next_room_button_pressed"]
