@@ -16,20 +16,22 @@ var roomKeyItems: Array[int] = []
 
 var rng = RandomNumberGenerator.new()
 
-func _ready():
+func build_game_rooms():
 	get_items_from_constants()
-	
-	get_room_items()
-	print(currentItems)
-	
+	set_room_items()
 	get_items_on_rooms()
-	print(roomItems)
+	
+func get_rooms():
+	return currentItems
+	
+func get_room_items():
+	return roomItems
 
 func get_items_from_constants():
 	for item in Constants.AVAILABLE_ITEMS:
 		allItems.append(str(item))
 	
-func get_room_items():
+func set_room_items():
 	# Get room item indexes
 	for i in range(0, totalRoomCount):
 		var randomIndex = rng.randi_range(0, maxIndex - 1)
