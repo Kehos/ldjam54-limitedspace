@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Ldjam54_LimitedSpace"
+run/main_scene="res://scenes/Game/Game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
