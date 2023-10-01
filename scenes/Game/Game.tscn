@@ -1,21 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://cu7av6n17dgcx"]
+[gd_scene load_steps=9 format=3 uid="uid://cu7av6n17dgcx"]
 
 [ext_resource type="Script" path="res://scripts/Game/Game.gd" id="1_my73j"]
-[ext_resource type="PackedScene" uid="uid://oe57itkmms4g" path="res://scenes/Item/Item1_GoldenKey.tscn" id="2_kncs3"]
-[ext_resource type="PackedScene" uid="uid://ch5mmargutv23" path="res://scenes/Item/Item2_Gun.tscn" id="3_20myp"]
-[ext_resource type="PackedScene" uid="uid://46o3ktlk3o88" path="res://scenes/Item/Item3_Crowbar.tscn" id="4_bquge"]
-[ext_resource type="PackedScene" uid="uid://dso7veu0b3gji" path="res://scenes/Item/Item4_Lockpick.tscn" id="5_fiqdj"]
-[ext_resource type="PackedScene" uid="uid://2u5fe75wwx18" path="res://scenes/Item/Item5_Explosive.tscn" id="6_mkbm8"]
-[ext_resource type="PackedScene" uid="uid://bpqhwtsex12de" path="res://scenes/Item/Item6_Shears.tscn" id="7_vqqc1"]
-[ext_resource type="PackedScene" uid="uid://c6ahcxa5tipx" path="res://scenes/Item/Item7_Doorknob.tscn" id="8_272qj"]
-[ext_resource type="PackedScene" uid="uid://dfg8ouclm0e8y" path="res://scenes/Item/Item8_IDCard.tscn" id="9_nxff8"]
-[ext_resource type="PackedScene" uid="uid://c0sqn4tbm3lhf" path="res://scenes/Item/Item9_USB.tscn" id="10_n3fik"]
-[ext_resource type="PackedScene" uid="uid://fgdaumjkao37" path="res://scenes/Item/Item10_RobotHand.tscn" id="11_i274l"]
-[ext_resource type="PackedScene" uid="uid://b8ialwqiogp0u" path="res://scenes/Item/Item11_FileTool.tscn" id="12_umsvg"]
-[ext_resource type="PackedScene" uid="uid://ybqx5een2tog" path="res://scenes/Item/Item12_Fuel.tscn" id="13_igrci"]
-[ext_resource type="PackedScene" uid="uid://bae14k78ok6dj" path="res://scenes/Item/Item13_Fuse.tscn" id="14_xee0b"]
-[ext_resource type="PackedScene" uid="uid://d0qwlghinsqyv" path="res://scenes/Item/Item14_Battery.tscn" id="15_hc7f2"]
-[ext_resource type="PackedScene" uid="uid://cbw0vgttbv5u0" path="res://scenes/Item/Item15_Money.tscn" id="16_gs0gj"]
+[ext_resource type="PackedScene" uid="uid://dx03pkfdnfqiu" path="res://scenes/Item/BaseItem.tscn" id="2_4jxkh"]
 [ext_resource type="Texture2D" uid="uid://chvlxbofl8apy" path="res://sprites/canvas.png" id="17_xlaai"]
 [ext_resource type="PackedScene" uid="uid://c1nrbckcck5ta" path="res://scenes/Player/Player.tscn" id="18_07pcf"]
 [ext_resource type="PackedScene" uid="uid://dheilki3k0dms" path="res://scenes/Game/Door.tscn" id="19_q828k"]
@@ -27,7 +13,7 @@
 
 [node name="Game" type="Node"]
 script = ExtResource("1_my73j")
-itemScenes = Array[PackedScene]([ExtResource("2_kncs3"), ExtResource("3_20myp"), ExtResource("4_bquge"), ExtResource("5_fiqdj"), ExtResource("6_mkbm8"), ExtResource("7_vqqc1"), ExtResource("8_272qj"), ExtResource("9_nxff8"), ExtResource("10_n3fik"), ExtResource("11_i274l"), ExtResource("12_umsvg"), ExtResource("13_igrci"), ExtResource("14_xee0b"), ExtResource("15_hc7f2"), ExtResource("16_gs0gj")])
+itemScene = ExtResource("2_4jxkh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -119,6 +105,8 @@ position = Vector2(23, 71)
 
 [node name="SpawnPoint6" type="Node2D" parent="ItemSpawns"]
 position = Vector2(26, 132)
+
+[node name="Items" type="Node" parent="."]
 
 [node name="ClueSpawns" type="Node" parent="."]
 

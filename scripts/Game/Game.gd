@@ -1,6 +1,6 @@
 extends Node
 
-@export var itemScenes: Array[PackedScene]
+@export var itemScene: PackedScene
 
 @onready var doorActions: RichTextLabel = $TextsContainer/MarginContainer/DoorActionsText
 @onready var textContent: RichTextLabel = $TextsContainer/MarginContainer/CurrentActionText
@@ -22,6 +22,13 @@ var itemInHand = -1
 var doorInteractable = false
 var continueText = "Press (E) to continue"
 
+# Items propeties
+@onready var itemSpawns = $ItemSpawns.get_children()
+var spawnPointStatus = []
+@onready var itemsContainer: Node = $Items
+
+var rng = RandomNumberGenerator.new()
+
 func _ready():
 	get_dungeon_properties()
 	set_current_room_properties()
@@ -37,10 +44,36 @@ func get_dungeon_properties():
 	$"/root/GameBuilder".build_game_rooms()
 	roomDoors = $"/root/GameBuilder".get_rooms()
 	roomItems = $"/root/GameBuilder".get_room_items()
+	for i in itemSpawns:
+		spawnPointStatus.append(false)
 	
 func set_current_room_properties():
 	currentRoomID = roomDoors[currentRoom]
 	currentRoomItems = roomItems[currentRoom]
+	spawn_items()
+	
+func spawn_items():
+	# Clean spawn points
+	for i in range(0, spawnPointStatus.size()):
+		spawnPointStatus[i] = false
+	
+	# Delete all remaining items
+	for item in itemsContainer.get_children():
+		itemsContainer.remove_child(item)
+		item.queue_free()
+	
+	# Spawn current room items
+	for i in currentRoomItems:
+		var item = itemScene.instantiate()
+		item.item_index = i
+		itemsContainer.add_child(item)
+		
+		# Assign items to random spawn points
+		var randomSpawnPoint = rng.randi_range(0, itemSpawns.size() - 1)
+		while spawnPointStatus[randomSpawnPoint]:
+			randomSpawnPoint = rng.randi_range(0, itemSpawns.size() - 1)
+		spawnPointStatus[randomSpawnPoint] = true
+		item.position = Vector2(itemSpawns[randomSpawnPoint].position)
 	
 func discard_item():
 	itemInHand = ""
