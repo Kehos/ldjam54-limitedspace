@@ -60,6 +60,10 @@ func get_items_on_rooms():
 		roomItems[randomIndex].append(currentItems[i])
 		roomKeyItems[randomIndex] += 1
 		
+	print(currentItems)
+	print(roomKeyItems)
+	print(roomItems)
+		
 	# Add remaining items to fill rooms
 	for i in range(0, allItems.size()):
 		var randomIndex = rng.randi_range(0, roomItems.size() - 1)
@@ -69,6 +73,27 @@ func get_items_on_rooms():
 		
 func check_cant_locate(index, checkKeyItems = false):
 	if checkKeyItems:
-		return (roomItems[index].size() == maxItemPerRoom) or (roomKeyItems[index] == maxKeyItemPerRoom)
+		var neighbor_full = false
+		if index == 0:
+			# Next neighbor is full
+			var nextIsFull = roomKeyItems[index + 1] == maxKeyItemPerRoom
+			# Next and current neighbor are full-1
+			var nextAndCurrent = (roomKeyItems[index + 1] == (maxKeyItemPerRoom - 1)) and (roomKeyItems[index] == (maxKeyItemPerRoom - 1))
+			neighbor_full = nextIsFull or nextAndCurrent
+		elif index == totalRoomCount - 1:
+			# Previous neighbor is full
+			var prevIsFull = roomKeyItems[index - 1] == maxKeyItemPerRoom
+			# Previous and current neighbor are full-1
+			var prevAndCurrent = (roomKeyItems[index - 1] == (maxKeyItemPerRoom - 1)) and (roomKeyItems[index] == (maxKeyItemPerRoom - 1))
+			neighbor_full = prevIsFull or prevAndCurrent
+		else:
+			# Previous neighbor is full
+			var prevIsFull = roomKeyItems[index - 1] == maxKeyItemPerRoom
+			# Next neighbor is full
+			var nextIsFull = roomKeyItems[index + 1] == maxKeyItemPerRoom
+			# Previous or next neight and current are full -1
+			var prevOrNextAndCurrent = (roomKeyItems[index] == (maxKeyItemPerRoom - 1)) and ((roomKeyItems[index - 1] == (maxKeyItemPerRoom - 1)) or (roomKeyItems[index + 1] == (maxKeyItemPerRoom - 1)))
+			neighbor_full = prevIsFull or nextIsFull or prevOrNextAndCurrent
+		return (roomItems[index].size() == maxItemPerRoom) or (roomKeyItems[index] == maxKeyItemPerRoom) or neighbor_full
 	else:
 		return roomItems[index].size() == maxItemPerRoom
