@@ -1,5 +1,7 @@
 extends Node
 
+@export var itemScenes: Array[PackedScene]
+
 # Game properties
 var roomDoors = []
 var roomItems = []
@@ -11,7 +13,7 @@ var currentRoomItems = []
 var currentRoomID = ""
 
 # Player properties
-var itemInHand = "GRENADE"
+var itemInHand = ""
 
 func _ready():
 	get_dungeon_properties()
@@ -33,6 +35,9 @@ func set_game_UI():
 	$GameUI.set_door_type(currentRoomID)
 	$GameUI.set_button_texts(currentRoomItems)
 	
+	# Instantiate items
+	print(currentRoomItems)
+	
 func discard_item():
 	itemInHand = ""
 
@@ -44,6 +49,7 @@ func _on_canvas_layer_item_picked(item):
 func _on_open_door_button_pressed():
 	if itemInHand == currentRoomID:
 		discard_item()
+		$GameUI/OpenDoorButton.hide()
 		if currentRoom != maxRoom:
 			$GameUI/NextRoomButton.show()
 
@@ -51,3 +57,4 @@ func _on_next_room_button_pressed():
 	currentRoom += 1
 	set_current_room_properties()
 	$GameUI/NextRoomButton.hide()
+	$GameUI/OpenDoorButton.show()
