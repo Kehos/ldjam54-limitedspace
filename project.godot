@@ -24,6 +24,7 @@ GameBuilder="*res://scripts/LevelManager/GameBuilder.gd"
 
 window/size/viewport_width=160
 window/size/viewport_height=200
+window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [input]

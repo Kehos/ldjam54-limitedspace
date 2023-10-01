@@ -63,15 +63,6 @@ visible = false
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 4
 
-[node name="DoorActionsText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
-visible = false
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 4
-text = "Observe (Q)
-
-Interact (E)"
-fit_content = true
-
 [node name="ItemActionsText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
 visible = false
 layout_mode = 2
@@ -79,6 +70,15 @@ theme_override_font_sizes/normal_font_size = 4
 text = "Observe (Q)
 
 Pick (E)"
+fit_content = true
+
+[node name="DoorActionsText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 4
+text = "Observe (Q)
+
+Interact (E)"
 fit_content = true
 
 [node name="Inventory" type="PanelContainer" parent="."]
@@ -94,6 +94,21 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="InventoryTitleLabel" type="RichTextLabel" parent="Inventory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 4
+text = "Item"
+
+[node name="ItemInHandLabel" type="RichTextLabel" parent="Inventory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 4
 
 [node name="ItemSpawns" type="Node" parent="."]
 
