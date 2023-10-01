@@ -1,0 +1,152 @@
+[gd_scene load_steps=9 format=3 uid="uid://cu7av6n17dgcx"]
+
+[ext_resource type="Script" path="res://scripts/Game/Game.gd" id="1_my73j"]
+[ext_resource type="PackedScene" uid="uid://dx03pkfdnfqiu" path="res://scenes/Item/BaseItem.tscn" id="2_4jxkh"]
+[ext_resource type="Texture2D" uid="uid://chvlxbofl8apy" path="res://sprites/canvas.png" id="17_xlaai"]
+[ext_resource type="PackedScene" uid="uid://c1nrbckcck5ta" path="res://scenes/Player/Player.tscn" id="18_07pcf"]
+[ext_resource type="PackedScene" uid="uid://dheilki3k0dms" path="res://scenes/Game/Door.tscn" id="19_q828k"]
+[ext_resource type="PackedScene" uid="uid://dgvca2ytmglnk" path="res://scenes/Game/Wall.tscn" id="20_6bt7d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axah3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kjanf"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_my73j")
+itemScene = ExtResource("2_4jxkh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 160.0
+offset_bottom = 200.0
+texture = ExtResource("17_xlaai")
+
+[node name="Walls" type="Node" parent="TextureRect"]
+
+[node name="WallLeft" parent="TextureRect/Walls" instance=ExtResource("20_6bt7d")]
+position = Vector2(5, 80)
+
+[node name="WallTop" parent="TextureRect/Walls" instance=ExtResource("20_6bt7d")]
+position = Vector2(80, 5)
+rotation = 1.57079
+
+[node name="WallRight" parent="TextureRect/Walls" instance=ExtResource("20_6bt7d")]
+position = Vector2(155, 80)
+
+[node name="WallBottom" parent="TextureRect/Walls" instance=ExtResource("20_6bt7d")]
+position = Vector2(80, 155)
+rotation = 1.57079
+
+[node name="Door" parent="TextureRect/Walls" instance=ExtResource("19_q828k")]
+position = Vector2(78, 9)
+
+[node name="RoomItems" type="Node" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("18_07pcf")]
+position = Vector2(81, 88)
+
+[node name="TextsContainer" type="PanelContainer" parent="."]
+offset_top = 160.0
+offset_right = 120.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_axah3")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextsContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CurrentActionText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 4
+
+[node name="ItemActionsText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 4
+text = "Observe (Q)
+
+Pick (E)"
+fit_content = true
+
+[node name="DoorActionsText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 4
+text = "Observe (Q)
+
+Interact (E)"
+fit_content = true
+
+[node name="Inventory" type="PanelContainer" parent="."]
+offset_left = 120.0
+offset_top = 160.0
+offset_right = 160.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kjanf")
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="InventoryTitleLabel" type="RichTextLabel" parent="Inventory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 4
+text = "Item"
+
+[node name="ItemInHandLabel" type="RichTextLabel" parent="Inventory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 4
+
+[node name="ItemSpawns" type="Node" parent="."]
+
+[node name="SpawnPoint1" type="Node2D" parent="ItemSpawns"]
+position = Vector2(40, 38)
+
+[node name="SpawnPoint2" type="Node2D" parent="ItemSpawns"]
+position = Vector2(132, 27)
+
+[node name="SpawnPoint3" type="Node2D" parent="ItemSpawns"]
+position = Vector2(135, 137)
+
+[node name="SpawnPoint4" type="Node2D" parent="ItemSpawns"]
+position = Vector2(120, 80)
+
+[node name="SpawnPoint5" type="Node2D" parent="ItemSpawns"]
+position = Vector2(23, 71)
+
+[node name="SpawnPoint6" type="Node2D" parent="ItemSpawns"]
+position = Vector2(26, 132)
+
+[node name="Items" type="Node" parent="."]
+
+[node name="ClueSpawns" type="Node" parent="."]
+
+[node name="ClueSpawn1" type="Node2D" parent="ClueSpawns"]
+position = Vector2(26, 11)
+
+[node name="ClueSpawn2" type="Node2D" parent="ClueSpawns"]
+position = Vector2(149, 53)
+
+[node name="ClueSpawn3" type="Node2D" parent="ClueSpawns"]
+position = Vector2(11, 104)
+
+[node name="ClueSpawn4" type="Node2D" parent="ClueSpawns"]
+position = Vector2(57, 149)
+
+[connection signal="door_entered" from="Player" to="." method="_on_player_door_entered"]
+[connection signal="door_exited" from="Player" to="." method="_on_player_door_exited"]
+[connection signal="item_entered" from="Player" to="." method="_on_player_item_entered"]
+[connection signal="item_exited" from="Player" to="." method="_on_player_item_exited"]
