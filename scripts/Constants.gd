@@ -92,7 +92,7 @@ var DOOR_TEXT: Array[String] = [
 
 var DOOR_ACTION: Array[String] = [
 	"Wasn't that login? Of course the door opens", # GOLDEN_KEY
-	"After a precise shot, the gun jams and door opens", # GUN
+	"You walk two steps backwars. After a precise shot, the gun jams and the door opens", # GUN
 	"After removing the last nail, the crowbar breaks and now it is useless", # CROWBAR
 	"You spend some time with the lockpicks, but in the end the door opens", # LOCKPICK
 	"You stick the explosive to the adhesive and stay away. There is a surprisingly small explosion and the door opens", # EXPLOSIVE
@@ -110,3 +110,4 @@ var DOOR_ACTION: Array[String] = [
 
 # Area element names
 var DOOR_AREA_NAME: String = "DoorArea"
+var ITEM_AREA_NAME: String = "ItemArea"
