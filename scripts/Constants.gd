@@ -107,3 +107,6 @@ var DOOR_ACTION: Array[String] = [
 	"You plug the wire to the battery and it starts charging the computer. When the battery is empty, the door opens", # BATTERY
 	"You skeptically insert the bill into the ATM. Surprisingly, the door opens" # MONEY
 ]
+
+# Area element names
+var DOOR_AREA_NAME: String = "DoorArea"

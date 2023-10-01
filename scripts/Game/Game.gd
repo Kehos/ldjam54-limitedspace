@@ -2,6 +2,9 @@ extends Node
 
 @export var itemScenes: Array[PackedScene]
 
+@onready var doorActions: RichTextLabel = $TextsContainer/MarginContainer/DoorActionsText
+@onready var textContent: RichTextLabel = $TextsContainer/MarginContainer/CurrentActionText
+
 # Game properties
 var roomDoors = []
 var roomItems = []
@@ -15,9 +18,19 @@ var currentRoomID = ""
 # Player properties
 var itemInHand = ""
 
+# Door properties
+var doorInteractable = false
+
 func _ready():
 	get_dungeon_properties()
 	set_current_room_properties()
+	
+func _process(delta):
+	if doorInteractable:
+		if Input.is_action_just_pressed("observe"):
+			observe_door()
+		if Input.is_action_just_pressed("interact"):
+			interact_door()
 	
 func get_dungeon_properties():
 	$"/root/GameBuilder".build_game_rooms()
@@ -37,6 +50,7 @@ func set_game_UI():
 	
 	# Instantiate items
 	print(currentRoomItems)
+	print(currentRoomID)
 	
 func discard_item():
 	itemInHand = ""
@@ -58,3 +72,21 @@ func _on_next_room_button_pressed():
 	set_current_room_properties()
 	$GameUI/NextRoomButton.hide()
 	$GameUI/OpenDoorButton.show()
+
+# Door
+func _on_player_door_entered():
+	doorInteractable = true
+	textContent.hide()
+	doorActions.show()
+
+func _on_player_door_exited():
+	doorInteractable = false
+	doorActions.hide()
+	
+func observe_door():
+	doorActions.hide()
+	textContent.text = currentRoomID
+	textContent.show()
+
+func interact_door():
+	doorActions.hide()

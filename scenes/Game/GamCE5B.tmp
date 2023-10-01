@@ -122,11 +122,37 @@ text = "NEXT ROOM"
 [node name="RoomItems" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("18_07pcf")]
-position = Vector2(81, 88)
+position = Vector2(77, 57)
+
+[node name="DoorActions" type="HBoxContainer" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -35.0
+offset_right = 274.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.26449, 0.26449)
+theme_override_constants/separation = 50
+
+[node name="ObserveLabel" type="Label" parent="DoorActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Observe (Q)"
+
+[node name="OpenLabel" type="Label" parent="DoorActions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Open (E)"
 
 [node name="TextsContainer" type="PanelContainer" parent="."]
 offset_top = 160.0
-offset_right = 120.0
+offset_right = 100.0
 offset_bottom = 200.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_axah3")
 
@@ -137,28 +163,20 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="CurrentActionText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
-visible = false
+[node name="RichTextLabel" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 4
+theme_override_font_sizes/normal_font_size = 5
+text = "Current item description"
 
-[node name="DoorActionsText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
-visible = false
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 4
-text = "Observe (Q)
-
-Interact (E)"
-fit_content = true
-
-[node name="Inventory" type="PanelContainer" parent="."]
-offset_left = 120.0
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(60, 40)
+offset_left = 100.0
 offset_top = 160.0
 offset_right = 160.0
 offset_bottom = 200.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kjanf")
 
-[node name="MarginContainer" type="MarginContainer" parent="Inventory"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
