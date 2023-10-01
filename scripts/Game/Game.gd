@@ -13,19 +13,20 @@ var maxRoom = 4
 
 # Current room properties
 var currentRoomItems = []
-var currentRoomID = ""
+var currentRoomID: int = -1
 
 # Player properties
-var itemInHand = ""
+var itemInHand = -1
 
 # Door properties
 var doorInteractable = false
+var continueText = "Press (E) to continue"
 
 func _ready():
 	get_dungeon_properties()
 	set_current_room_properties()
 	
-func _process(delta):
+func _process(_delta):
 	if doorInteractable:
 		if Input.is_action_just_pressed("observe"):
 			observe_door()
@@ -40,17 +41,6 @@ func get_dungeon_properties():
 func set_current_room_properties():
 	currentRoomID = roomDoors[currentRoom]
 	currentRoomItems = roomItems[currentRoom]
-	set_game_UI()
-	
-func set_game_UI():
-	$GameUI.set_current_room(currentRoom)
-	$GameUI.update_player_label(itemInHand)
-	$GameUI.set_door_type(currentRoomID)
-	$GameUI.set_button_texts(currentRoomItems)
-	
-	# Instantiate items
-	print(currentRoomItems)
-	print(currentRoomID)
 	
 func discard_item():
 	itemInHand = ""
@@ -85,8 +75,15 @@ func _on_player_door_exited():
 	
 func observe_door():
 	doorActions.hide()
-	textContent.text = currentRoomID
+	textContent.text = Constants.DOOR_TEXT[currentRoomID]
 	textContent.show()
 
 func interact_door():
 	doorActions.hide()
+	if itemInHand < 0:
+		textContent.text = "You need something to interact with the door"
+	elif itemInHand == currentRoomID:
+		textContent.text = Constants.DOOR_ACTION[currentRoomID]
+	else:
+		textContent.text = "This does not work here"
+	textContent.show()

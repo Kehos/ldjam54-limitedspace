@@ -78,7 +78,7 @@ var DOOR_TEXT: Array[String] = [
 	"The door is covered with some solid nailed wooden planks", # CROWBAR
 	"A normal door with a tiny lock. There seems that no key fits in it", # LOCKPICK
 	"Someone prepared some adhesive for an explosive device", # EXPLOSIVE
-	"There is no door, but the opening is covered by a lot of barbed wire", # SHEARS
+	"There is a simple unlocked door, but it is covered by a lot of barbed wire", # SHEARS
 	"That\'s a pretty solid metal door, but it has no doorknob", # DOORKNOB
 	"You can see an electronic lock with a small slot", # ID_CARD
 	"There is a complex protected computer with some pluggable ports", # USB
@@ -96,7 +96,7 @@ var DOOR_ACTION: Array[String] = [
 	"After removing the last nail, the crowbar breaks and now it is useless", # CROWBAR
 	"You spend some time with the lockpicks, but in the end the door opens", # LOCKPICK
 	"You stick the explosive to the adhesive and stay away. There is a surprisingly small explosion and the door opens", # EXPLOSIVE
-	"Carefully you remove the barbed wire, but the shears are now useless", # SHEARS
+	"Carefully you remove the barbed wire, but the shears are now useless. You can continue", # SHEARS
 	"You insert the doorknob with no effort. The door can be opened now", # DOORKNOB
 	"You slide the ID into the slot and after some beeps, the door opens", # ID_CARD
 	"You plug the USB into the correct port and a message is displayed in a small screen: Door open", # USB

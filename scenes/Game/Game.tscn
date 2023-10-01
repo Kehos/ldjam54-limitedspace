@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cu7av6n17dgcx"]
+[gd_scene load_steps=23 format=3 uid="uid://cu7av6n17dgcx"]
 
 [ext_resource type="Script" path="res://scripts/Game/Game.gd" id="1_my73j"]
 [ext_resource type="PackedScene" uid="uid://oe57itkmms4g" path="res://scenes/Item/Item1_GoldenKey.tscn" id="2_kncs3"]
-[ext_resource type="Script" path="res://scripts/UI/GameUI.gd" id="2_xpvnd"]
 [ext_resource type="PackedScene" uid="uid://ch5mmargutv23" path="res://scenes/Item/Item2_Gun.tscn" id="3_20myp"]
 [ext_resource type="PackedScene" uid="uid://46o3ktlk3o88" path="res://scenes/Item/Item3_Crowbar.tscn" id="4_bquge"]
 [ext_resource type="PackedScene" uid="uid://dso7veu0b3gji" path="res://scenes/Item/Item4_Lockpick.tscn" id="5_fiqdj"]
@@ -55,70 +54,6 @@ rotation = 1.57079
 [node name="Door" parent="TextureRect/Walls" instance=ExtResource("19_q828k")]
 position = Vector2(78, 9)
 
-[node name="GameUI" type="CanvasLayer" parent="."]
-visible = false
-script = ExtResource("2_xpvnd")
-
-[node name="RoomLabel" type="Label" parent="GameUI"]
-offset_left = 502.0
-offset_top = 281.0
-offset_right = 647.0
-offset_bottom = 307.0
-size_flags_horizontal = 4
-text = "Room X: Door type"
-
-[node name="PlayerLabel" type="Label" parent="GameUI"]
-offset_left = 521.0
-offset_top = 311.0
-offset_right = 630.0
-offset_bottom = 337.0
-size_flags_horizontal = 4
-text = "Player holds X"
-
-[node name="MarginContainer" type="MarginContainer" parent="GameUI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GameUI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_constants/separation = 10
-
-[node name="Item1" type="Button" parent="GameUI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Item 1"
-
-[node name="Item2" type="Button" parent="GameUI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Item 1"
-
-[node name="Item3" type="Button" parent="GameUI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Item 1"
-
-[node name="OpenDoorButton" type="Button" parent="GameUI"]
-offset_left = 464.0
-offset_top = 414.0
-offset_right = 568.0
-offset_bottom = 445.0
-text = "OPEN DOOR"
-
-[node name="NextRoomButton" type="Button" parent="GameUI"]
-visible = false
-offset_left = 594.0
-offset_top = 414.0
-offset_right = 698.0
-offset_bottom = 445.0
-text = "NEXT ROOM"
-
 [node name="RoomItems" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("18_07pcf")]
@@ -165,11 +100,39 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[connection signal="item_picked" from="GameUI" to="." method="_on_canvas_layer_item_picked"]
-[connection signal="pressed" from="GameUI/MarginContainer/HBoxContainer/Item1" to="GameUI" method="_on_item_1_pressed"]
-[connection signal="pressed" from="GameUI/MarginContainer/HBoxContainer/Item2" to="GameUI" method="_on_item_2_pressed"]
-[connection signal="pressed" from="GameUI/MarginContainer/HBoxContainer/Item3" to="GameUI" method="_on_item_3_pressed"]
-[connection signal="pressed" from="GameUI/OpenDoorButton" to="." method="_on_open_door_button_pressed"]
-[connection signal="pressed" from="GameUI/NextRoomButton" to="." method="_on_next_room_button_pressed"]
+[node name="ItemSpawns" type="Node" parent="."]
+
+[node name="SpawnPoint1" type="Node2D" parent="ItemSpawns"]
+position = Vector2(40, 38)
+
+[node name="SpawnPoint2" type="Node2D" parent="ItemSpawns"]
+position = Vector2(132, 27)
+
+[node name="SpawnPoint3" type="Node2D" parent="ItemSpawns"]
+position = Vector2(135, 137)
+
+[node name="SpawnPoint4" type="Node2D" parent="ItemSpawns"]
+position = Vector2(120, 80)
+
+[node name="SpawnPoint5" type="Node2D" parent="ItemSpawns"]
+position = Vector2(23, 71)
+
+[node name="SpawnPoint6" type="Node2D" parent="ItemSpawns"]
+position = Vector2(26, 132)
+
+[node name="ClueSpawns" type="Node" parent="."]
+
+[node name="ClueSpawn1" type="Node2D" parent="ClueSpawns"]
+position = Vector2(26, 11)
+
+[node name="ClueSpawn2" type="Node2D" parent="ClueSpawns"]
+position = Vector2(149, 53)
+
+[node name="ClueSpawn3" type="Node2D" parent="ClueSpawns"]
+position = Vector2(11, 104)
+
+[node name="ClueSpawn4" type="Node2D" parent="ClueSpawns"]
+position = Vector2(57, 149)
+
 [connection signal="door_entered" from="Player" to="." method="_on_player_door_entered"]
 [connection signal="door_exited" from="Player" to="." method="_on_player_door_exited"]

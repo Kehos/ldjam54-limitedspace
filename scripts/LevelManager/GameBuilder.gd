@@ -28,8 +28,8 @@ func get_room_items():
 	return roomItems
 
 func get_items_from_constants():
-	for item in Constants.AVAILABLE_ITEMS:
-		allItems.append(str(item))
+	for index in range(0, Constants.AVAILABLE_ITEMS.size()):
+		allItems.append(index)
 	
 func set_room_items():
 	# Get room item indexes
@@ -41,10 +41,9 @@ func set_room_items():
 		
 	# Get items from room indexes
 	for i in rooms:
-		var item = Constants.AVAILABLE_ITEMS[i]
-		var itemIndex = allItems.find(item)
+		var itemIndex = allItems.find(i)
 		allItems.remove_at(itemIndex)
-		currentItems.append(item)
+		currentItems.append(i)
 
 func get_items_on_rooms():
 	# Init items arrays
@@ -53,11 +52,11 @@ func get_items_on_rooms():
 		roomKeyItems.append(0)
 	
 	# Add key items to max room
-	for i in range(0, currentItems.size()):
+	for i in range(0, rooms.size()):
 		var randomIndex = rng.randi_range(0, i)
 		while check_cant_locate(randomIndex, true):
 			randomIndex = rng.randi_range(0, i)
-		roomItems[randomIndex].append(currentItems[i])
+		roomItems[randomIndex].append(rooms[i])
 		roomKeyItems[randomIndex] += 1
 		
 	# Add remaining items to fill rooms
