@@ -4,6 +4,7 @@ extends Node
 @export var clueScene: PackedScene
 
 var pauseMenuScene = preload("res://scenes/UI/PauseMenu.tscn")
+var gameCompleteMenuScene = preload("res://scenes/UI/GameCompleteMenu.tscn")
 
 @onready var textContent: RichTextLabel = $TextsContainer/MarginContainer/CurrentActionText
 @onready var doorActions: RichTextLabel = $TextsContainer/MarginContainer/DoorActionsText
@@ -15,8 +16,9 @@ var pauseMenuScene = preload("res://scenes/UI/PauseMenu.tscn")
 var roomDoors = []
 var roomItems = []
 var currentRoom = 0
-var maxRoom = 4
+var maxRoom = 5
 var goToNextRoomAsked = false
+@onready var roomIDLabel: RichTextLabel = $Inventory/MarginContainer/VBoxContainer/RoomIDLabel
 
 # Current room properties
 var currentRoomItems = []
@@ -86,6 +88,7 @@ func get_dungeon_properties():
 		spawnPointStatus.append(-1)
 	
 func set_current_room_properties():
+	roomIDLabel.text = str("Room ", currentRoom)
 	init_door_properties()
 	currentRoomID = roomDoors[currentRoom]
 	currentRoomItems = roomItems[currentRoom]
@@ -127,8 +130,9 @@ func spawn_clue():
 
 	# Spawn clue
 	var clue = clueScene.instantiate()
-	clue.item_index = roomClues[currentRoom]
-	cluesContainer.add_child(clue)
+	if currentRoom < maxRoom - 1:
+		clue.item_index = roomClues[currentRoom]
+		cluesContainer.add_child(clue)
 	
 	# Assign clue to random spawn point
 	var randomSpawnPoint = rng.randi_range(0, clueSpawns.size() - 1)
@@ -143,7 +147,8 @@ func go_to_next_room():
 		playerNode.position = Vector2(playerInitialPosition)
 		
 func game_complete():
-	print("GAME COMPLETE!")
+	var gameCompleteInstance = gameCompleteMenuScene.instantiate()
+	add_child(gameCompleteInstance)
 
 # Door
 func _on_player_door_entered():

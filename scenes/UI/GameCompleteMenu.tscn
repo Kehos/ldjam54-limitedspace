@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://qionmpjigwp8" path="res://scenes/UI/UIButton.tscn" id="1_ruxsq"]
 
 [node name="GameCompleteMenu" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_exd4j")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -14,9 +15,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = -32.5
+offset_top = -22.5
 offset_right = 50.0
-offset_bottom = 32.5
+offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -28,15 +29,25 @@ theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GameCompleteLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = "You escaped"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="ReplayButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ruxsq")]
+[node name="ReplayButton" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("1_ruxsq")]
 layout_mode = 2
 text = "Replay"
 
-[node name="MainMenuButton2" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ruxsq")]
+[node name="MainMenuButton2" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("1_ruxsq")]
 layout_mode = 2
 text = "Main menu"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenuButton2" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/MainMenuButton2" to="." method="_on_main_menu_button_pressed"]
