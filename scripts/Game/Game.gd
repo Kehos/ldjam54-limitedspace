@@ -3,6 +3,8 @@ extends Node
 @export var itemScene: PackedScene
 @export var clueScene: PackedScene
 
+var pauseMenuScene = preload("res://scenes/UI/PauseMenu.tscn")
+
 @onready var textContent: RichTextLabel = $TextsContainer/MarginContainer/CurrentActionText
 @onready var doorActions: RichTextLabel = $TextsContainer/MarginContainer/DoorActionsText
 @onready var itemActions: RichTextLabel = $TextsContainer/MarginContainer/ItemActionsText
@@ -69,6 +71,11 @@ func _process(_delta):
 	if clueInteractable:
 		if Input.is_action_just_pressed("observe"):
 			observe_clue()
+			
+func _unhandled_input(event):
+	if event.is_action_pressed("pause"):
+		var pauseInstance = pauseMenuScene.instantiate()
+		add_child(pauseInstance)
 	
 func get_dungeon_properties():
 	$"/root/GameBuilder".build_game_rooms()

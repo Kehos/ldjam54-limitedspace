@@ -20,11 +20,20 @@ var roomClues = []
 var rng = RandomNumberGenerator.new()
 
 func build_game_rooms():
+	init_all()
 	get_items_from_constants()
 	set_room_items()
 	set_items_on_rooms()
 	set_room_clues()
 	assign_remaining_items()
+	
+func init_all():
+	allItems = []
+	roomDoors = []
+	rooms = []
+	roomItems = []
+	roomKeyItems = []
+	roomClues = []
 	
 func get_room_doors():
 	return roomDoors

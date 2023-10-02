@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://da5pnk5cvlq3v"]
+[gd_scene load_steps=3 format=3 uid="uid://da5pnk5cvlq3v"]
 
+[ext_resource type="Script" path="res://scripts/UI/GameCompleteMenu.gd" id="1_exd4j"]
 [ext_resource type="PackedScene" uid="uid://qionmpjigwp8" path="res://scenes/UI/UIButton.tscn" id="1_ruxsq"]
 
 [node name="GameCompleteMenu" type="CanvasLayer"]
+script = ExtResource("1_exd4j")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(0, 65)
@@ -28,6 +30,13 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="BackButtoon" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ruxsq")]
+[node name="ReplayButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ruxsq")]
+layout_mode = 2
+text = "Replay"
+
+[node name="MainMenuButton2" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ruxsq")]
 layout_mode = 2
 text = "Main menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenuButton2" to="." method="_on_main_menu_button_pressed"]

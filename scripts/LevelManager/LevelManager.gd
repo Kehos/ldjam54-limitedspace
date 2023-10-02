@@ -7,7 +7,7 @@ var gameCompleteMenuScenePath = "res://scenes/UI/GameCompleteMenu.tscn"
 func start_game():
 	change_scene_by_path(gameScenePath)
 
-func restart_level():
+func restart_game():
 	start_game()
 
 func go_to_main_menu():
