@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="Ldjam54_LimitedSpace"
-run/main_scene="res://scenes/Game/Game.tscn"
+run/main_scene="res://scenes/UI/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Constants="*res://scripts/Constants.gd"
+SceneTransitionManager="*res://scenes/LevelManager/SceneTransitionManager.tscn"
+LevelManager="*res://scenes/LevelManager/LevelManager.tscn"
 GameBuilder="*res://scripts/LevelManager/GameBuilder.gd"
 
 [display]

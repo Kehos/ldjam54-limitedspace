@@ -247,5 +247,5 @@ func _on_player_clue_exited():
 
 func observe_clue():
 	clueAction.hide()
-	textContent.text = Constants.ITEM_CLUE[currentRoomID]
+	textContent.text = Constants.ITEM_CLUE[roomClues[currentRoom]]
 	textContent.show()

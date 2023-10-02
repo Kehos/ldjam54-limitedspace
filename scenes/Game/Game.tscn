@@ -112,7 +112,8 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 4
-text = "Item"
+bbcode_enabled = true
+text = "[center]Item[/center]"
 
 [node name="ItemInHandLabel" type="RichTextLabel" parent="Inventory/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
