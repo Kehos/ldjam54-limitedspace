@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cu7av6n17dgcx"]
+[gd_scene load_steps=10 format=3 uid="uid://cu7av6n17dgcx"]
 
 [ext_resource type="Script" path="res://scripts/Game/Game.gd" id="1_my73j"]
 [ext_resource type="PackedScene" uid="uid://dx03pkfdnfqiu" path="res://scenes/Item/BaseItem.tscn" id="2_4jxkh"]
+[ext_resource type="PackedScene" uid="uid://hlik2si4b5tr" path="res://scenes/Item/Clue.tscn" id="3_ayx12"]
 [ext_resource type="Texture2D" uid="uid://chvlxbofl8apy" path="res://sprites/canvas.png" id="17_xlaai"]
 [ext_resource type="PackedScene" uid="uid://c1nrbckcck5ta" path="res://scenes/Player/Player.tscn" id="18_07pcf"]
 [ext_resource type="PackedScene" uid="uid://dheilki3k0dms" path="res://scenes/Game/Door.tscn" id="19_q828k"]
@@ -14,6 +15,7 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_my73j")
 itemScene = ExtResource("2_4jxkh")
+clueScene = ExtResource("3_ayx12")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -81,6 +83,13 @@ text = "Observe (Q)
 Interact (E)"
 fit_content = true
 
+[node name="ClueActionText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 4
+text = "Observe (Q)"
+fit_content = true
+
 [node name="Inventory" type="PanelContainer" parent="."]
 offset_left = 120.0
 offset_top = 160.0
@@ -103,7 +112,8 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 4
-text = "Item"
+bbcode_enabled = true
+text = "[center]Item[/center]"
 
 [node name="ItemInHandLabel" type="RichTextLabel" parent="Inventory/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
@@ -146,6 +156,10 @@ position = Vector2(11, 104)
 [node name="ClueSpawn4" type="Node2D" parent="ClueSpawns"]
 position = Vector2(57, 149)
 
+[node name="Clues" type="Node" parent="."]
+
+[connection signal="clue_entered" from="Player" to="." method="_on_player_clue_entered"]
+[connection signal="clue_exited" from="Player" to="." method="_on_player_clue_exited"]
 [connection signal="door_entered" from="Player" to="." method="_on_player_door_entered"]
 [connection signal="door_exited" from="Player" to="." method="_on_player_door_exited"]
 [connection signal="item_entered" from="Player" to="." method="_on_player_item_entered"]

@@ -58,7 +58,7 @@ var ITEM_CLUE: Array[String] = [
 	"A golden ticket for the famous Chocolate Factory", # GOLDEN_KEY
 	"There is a target on the wall from a shooting range", # GUN
 	"Some broken wooden planks, it appears they have been removed with something", # CROWBAR
-	"You can see an empty box of a robbery movie", # LOCKPICK
+	"You can see an empty case from a robbery movie", # LOCKPICK
 	"An alert sign preventing from explosions", # EXPLOSIVE
 	"An old rusted roll of barbed wire", # SHEARS
 	"An advertising brochure for a locksmith", # DOORKNOB
@@ -111,3 +111,4 @@ var DOOR_ACTION: Array[String] = [
 # Area element names
 var DOOR_AREA_NAME: String = "DoorArea"
 var ITEM_AREA_NAME: String = "ItemArea"
+var CLUE_AREA_NAME: String = "ClueArea"

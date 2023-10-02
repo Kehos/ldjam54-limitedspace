@@ -4,7 +4,7 @@ var maxIndex = 15
 
 # Items
 var allItems = []
-var currentItems = []
+var roomDoors = []
 
 # Rooms properties
 var rooms = []
@@ -14,18 +14,35 @@ var maxKeyItemPerRoom = 2
 var roomItems = []
 var roomKeyItems = []
 
+# Clues
+var roomClues = []
+
 var rng = RandomNumberGenerator.new()
 
 func build_game_rooms():
+	init_all()
 	get_items_from_constants()
 	set_room_items()
-	get_items_on_rooms()
+	set_items_on_rooms()
+	set_room_clues()
+	assign_remaining_items()
 	
-func get_rooms():
-	return currentItems
+func init_all():
+	allItems = []
+	roomDoors = []
+	rooms = []
+	roomItems = []
+	roomKeyItems = []
+	roomClues = []
+	
+func get_room_doors():
+	return roomDoors
 	
 func get_room_items():
 	return roomItems
+	
+func get_room_clues():
+	return roomClues
 
 func get_items_from_constants():
 	for index in range(0, Constants.AVAILABLE_ITEMS.size()):
@@ -43,9 +60,9 @@ func set_room_items():
 	for i in rooms:
 		var itemIndex = allItems.find(i)
 		allItems.remove_at(itemIndex)
-		currentItems.append(i)
+		roomDoors.append(i)
 
-func get_items_on_rooms():
+func set_items_on_rooms():
 	# Init items arrays
 	for i in rooms:
 		roomItems.append([])
@@ -59,6 +76,15 @@ func get_items_on_rooms():
 		roomItems[randomIndex].append(rooms[i])
 		roomKeyItems[randomIndex] += 1
 		
+func set_room_clues():
+	# Get clue indexes
+	for i in range(0, roomItems.size()):
+		var room = roomItems[i]
+		for j in range(0, room.size()):
+			if room[j] != roomDoors[0]:
+				roomClues.append(room[j])
+		
+func assign_remaining_items():
 	# Add remaining items to fill rooms
 	for i in range(0, allItems.size()):
 		var randomIndex = rng.randi_range(0, roomItems.size() - 1)

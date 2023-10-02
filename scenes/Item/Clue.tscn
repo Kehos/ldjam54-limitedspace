@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://hlik2si4b5tr"]
+
+[ext_resource type="Texture2D" uid="uid://cmbdbufd18f86" path="res://sprites/clue_placeholder.png" id="1_4780g"]
+[ext_resource type="Script" path="res://scripts/Item/Item.gd" id="2_ixjve"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbaw6"]
+size = Vector2(32, 32)
+
+[node name="Clue" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4780g")
+script = ExtResource("2_ixjve")
+
+[node name="ClueArea" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClueArea"]
+shape = SubResource("RectangleShape2D_kbaw6")
