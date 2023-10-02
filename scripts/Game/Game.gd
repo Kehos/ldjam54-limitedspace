@@ -1,10 +1,12 @@
 extends Node
 
 @export var itemScene: PackedScene
+@export var clueScene: PackedScene
 
 @onready var textContent: RichTextLabel = $TextsContainer/MarginContainer/CurrentActionText
 @onready var doorActions: RichTextLabel = $TextsContainer/MarginContainer/DoorActionsText
 @onready var itemActions: RichTextLabel = $TextsContainer/MarginContainer/ItemActionsText
+@onready var clueAction: RichTextLabel = $TextsContainer/MarginContainer/ClueActionText
 @onready var itemInHandLabel: RichTextLabel = $Inventory/MarginContainer/VBoxContainer/ItemInHandLabel
 
 # Game properties
@@ -35,13 +37,17 @@ var spawnPointStatus = []
 var itemHoveredId = -1
 var itemInteractable = false
 
+# Clues properties
+var roomClues = []
+@onready var clueSpawns = $ClueSpawns.get_children()
+@onready var cluesContainer: Node = $Clues
+var clueInteractable = false
+
 var rng = RandomNumberGenerator.new()
 
 func _ready():
 	get_dungeon_properties()
 	set_current_room_properties()
-	
-	print(playerNode.position)
 	
 func _process(_delta):
 	if doorInteractable:
@@ -59,11 +65,16 @@ func _process(_delta):
 			observe_item()
 		if Input.is_action_just_pressed("interact"):
 			pick_item()
+			
+	if clueInteractable:
+		if Input.is_action_just_pressed("observe"):
+			observe_clue()
 	
 func get_dungeon_properties():
 	$"/root/GameBuilder".build_game_rooms()
-	roomDoors = $"/root/GameBuilder".get_rooms()
+	roomDoors = $"/root/GameBuilder".get_room_doors()
 	roomItems = $"/root/GameBuilder".get_room_items()
+	roomClues = $"/root/GameBuilder".get_room_clues()
 	for i in itemSpawns:
 		spawnPointStatus.append(-1)
 	
@@ -72,6 +83,7 @@ func set_current_room_properties():
 	currentRoomID = roomDoors[currentRoom]
 	currentRoomItems = roomItems[currentRoom]
 	spawn_items()
+	spawn_clue()
 	
 func init_door_properties():
 	doorInteractable = false
@@ -100,16 +112,38 @@ func spawn_items():
 		spawnPointStatus[randomSpawnPoint] = i
 		item.position = Vector2(itemSpawns[randomSpawnPoint].position)
 		
+func spawn_clue():
+	# Delete current clue
+	for item in cluesContainer.get_children():
+		cluesContainer.remove_child(item)
+		item.queue_free()
+
+	# Spawn clue
+	var clue = clueScene.instantiate()
+	clue.item_index = roomClues[currentRoom]
+	cluesContainer.add_child(clue)
+	
+	# Assign clue to random spawn point
+	var randomSpawnPoint = rng.randi_range(0, clueSpawns.size() - 1)
+	clue.position = Vector2(clueSpawns[randomSpawnPoint].position)
+		
 func go_to_next_room():
 	currentRoom += 1
-	set_current_room_properties()
-	playerNode.position = Vector2(playerInitialPosition)
+	if currentRoom == maxRoom:
+		game_complete()
+	else:
+		set_current_room_properties()
+		playerNode.position = Vector2(playerInitialPosition)
+		
+func game_complete():
+	print("GAME COMPLETE!")
 
 # Door
 func _on_player_door_entered():
 	doorInteractable = true
 	textContent.hide()
 	itemActions.hide()
+	clueAction.hide()
 	doorActions.show()
 
 func _on_player_door_exited():
@@ -150,6 +184,7 @@ func _on_player_item_entered(id):
 	itemInteractable = true
 	textContent.hide()
 	doorActions.hide()
+	clueAction.hide()
 	itemActions.show()
 
 func _on_player_item_exited():
@@ -196,3 +231,21 @@ func remove_item():
 func discard_item():
 	itemInHand = -1
 	itemInHandLabel.text = ""
+
+# Clues
+func _on_player_clue_entered():
+	clueInteractable = true
+	textContent.hide()
+	doorActions.hide()
+	itemActions.hide()
+	clueAction.show()
+
+func _on_player_clue_exited():
+	clueInteractable = false
+	clueAction.hide()
+	textContent.hide()
+
+func observe_clue():
+	clueAction.hide()
+	textContent.text = Constants.ITEM_CLUE[currentRoomID]
+	textContent.show()
