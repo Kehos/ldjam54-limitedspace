@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Ldjam54_LimitedSpace"
+config/name="A Door Behind"
 run/main_scene="res://scenes/UI/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"

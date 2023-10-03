@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddo5i4awvehd3"]
+
+[ext_resource type="Texture2D" uid="uid://ccf3c5e0v07na" path="res://sprites/Walls/tilemap.png" id="1_yj5j2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ew8"]
+size = Vector2(160, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ngi"]
+resource_name = "Walls"
+texture = ExtResource("1_yj5j2")
+0:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+2:2/0 = 0
+1:2/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8igjv"]
+sources/0 = SubResource("TileSetAtlasSource_d2ngi")
+
+[node name="WallBottom" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_x5ew8")
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+tile_set = SubResource("TileSet_8igjv")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65534, 131072, 0, -65535, 131072, 0, -65536, 131072, 0, -1, 131072, 0, -2, 131072, 0, -3, 131072, 0, -65533, 196608, 0, -65532, 196608, 2, -5, 131072, 2, -4, 65536, 0)

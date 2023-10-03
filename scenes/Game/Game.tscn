@@ -1,15 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://cu7av6n17dgcx"]
+[gd_scene load_steps=15 format=3 uid="uid://cu7av6n17dgcx"]
 
 [ext_resource type="Script" path="res://scripts/Game/Game.gd" id="1_my73j"]
 [ext_resource type="PackedScene" uid="uid://dx03pkfdnfqiu" path="res://scenes/Item/BaseItem.tscn" id="2_4jxkh"]
 [ext_resource type="PackedScene" uid="uid://hlik2si4b5tr" path="res://scenes/Item/Clue.tscn" id="3_ayx12"]
-[ext_resource type="Texture2D" uid="uid://cr374v5etth60" path="res://sprites/textbox_text.png" id="7_ssy6b"]
-[ext_resource type="Texture2D" uid="uid://dy3ytjp2kaeoa" path="res://sprites/textbox_item.png" id="8_ulaha"]
+[ext_resource type="PackedScene" uid="uid://h06kcdoi4aqd" path="res://scenes/Game/WallTop.tscn" id="7_e7pfw"]
+[ext_resource type="Texture2D" uid="uid://cr374v5etth60" path="res://sprites/UI/textbox_text.png" id="7_vdw0i"]
+[ext_resource type="PackedScene" uid="uid://ddo5i4awvehd3" path="res://scenes/Game/WallBottom.tscn" id="8_u2rox"]
+[ext_resource type="Texture2D" uid="uid://dy3ytjp2kaeoa" path="res://sprites/UI/textbox_item.png" id="8_uci3y"]
+[ext_resource type="PackedScene" uid="uid://c6bxcjiidycv7" path="res://scenes/Game/WallSide.tscn" id="9_c3dmi"]
 [ext_resource type="FontFile" uid="uid://b03l8d6cx1yk8" path="res://fonts/Kenney Pixel.ttf" id="10_1gu1t"]
 [ext_resource type="Texture2D" uid="uid://chvlxbofl8apy" path="res://sprites/canvas.png" id="17_xlaai"]
 [ext_resource type="PackedScene" uid="uid://c1nrbckcck5ta" path="res://scenes/Player/Player.tscn" id="18_07pcf"]
 [ext_resource type="PackedScene" uid="uid://dheilki3k0dms" path="res://scenes/Game/Door.tscn" id="19_q828k"]
-[ext_resource type="PackedScene" uid="uid://dgvca2ytmglnk" path="res://scenes/Game/Wall.tscn" id="20_6bt7d"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axah3"]
 
@@ -28,29 +30,30 @@ texture = ExtResource("17_xlaai")
 
 [node name="Walls" type="Node" parent="TextureRect"]
 
-[node name="WallLeft" parent="TextureRect/Walls" instance=ExtResource("20_6bt7d")]
-position = Vector2(5, 80)
-
-[node name="WallTop" parent="TextureRect/Walls" instance=ExtResource("20_6bt7d")]
-position = Vector2(80, 5)
-rotation = 1.57079
-
-[node name="WallRight" parent="TextureRect/Walls" instance=ExtResource("20_6bt7d")]
-position = Vector2(155, 80)
-
-[node name="WallBottom" parent="TextureRect/Walls" instance=ExtResource("20_6bt7d")]
-position = Vector2(80, 155)
-rotation = 1.57079
-
 [node name="Door" parent="TextureRect/Walls" instance=ExtResource("19_q828k")]
-position = Vector2(78, 9)
+position = Vector2(78, 31)
+
+[node name="WallTop2" parent="TextureRect/Walls" instance=ExtResource("7_e7pfw")]
+position = Vector2(80, 32)
+
+[node name="WallBottom2" parent="TextureRect/Walls" instance=ExtResource("8_u2rox")]
+position = Vector2(80, 144)
+rotation = -3.14159
+
+[node name="WallLeft2" parent="TextureRect/Walls" instance=ExtResource("9_c3dmi")]
+position = Vector2(32, 96)
+rotation = -1.57079
+
+[node name="WallLeft3" parent="TextureRect/Walls" instance=ExtResource("9_c3dmi")]
+position = Vector2(128, 80)
+rotation = -4.71238
 
 [node name="DescriptionBoxBg" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
 offset_top = 160.0
 offset_right = 120.0
 offset_bottom = 200.0
-texture = ExtResource("7_ssy6b")
+texture = ExtResource("7_vdw0i")
 
 [node name="ItemBoxBg" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
@@ -58,7 +61,7 @@ offset_left = 120.0
 offset_top = 160.0
 offset_right = 160.0
 offset_bottom = 200.0
-texture = ExtResource("8_ulaha")
+texture = ExtResource("8_uci3y")
 
 [node name="RoomItems" type="Node" parent="."]
 
@@ -162,38 +165,38 @@ text = "[center]Room X[/center]"
 [node name="ItemSpawns" type="Node" parent="."]
 
 [node name="SpawnPoint1" type="Node2D" parent="ItemSpawns"]
-position = Vector2(40, 38)
+position = Vector2(47, 47)
 
 [node name="SpawnPoint2" type="Node2D" parent="ItemSpawns"]
-position = Vector2(132, 27)
+position = Vector2(120, 39)
 
 [node name="SpawnPoint3" type="Node2D" parent="ItemSpawns"]
-position = Vector2(135, 137)
+position = Vector2(118, 134)
 
 [node name="SpawnPoint4" type="Node2D" parent="ItemSpawns"]
-position = Vector2(120, 80)
+position = Vector2(114, 79)
 
 [node name="SpawnPoint5" type="Node2D" parent="ItemSpawns"]
-position = Vector2(23, 71)
+position = Vector2(38, 80)
 
 [node name="SpawnPoint6" type="Node2D" parent="ItemSpawns"]
-position = Vector2(26, 132)
+position = Vector2(40, 129)
 
 [node name="Items" type="Node" parent="."]
 
 [node name="ClueSpawns" type="Node" parent="."]
 
 [node name="ClueSpawn1" type="Node2D" parent="ClueSpawns"]
-position = Vector2(26, 11)
+position = Vector2(36, 35)
 
 [node name="ClueSpawn2" type="Node2D" parent="ClueSpawns"]
-position = Vector2(149, 53)
+position = Vector2(124, 55)
 
 [node name="ClueSpawn3" type="Node2D" parent="ClueSpawns"]
-position = Vector2(11, 104)
+position = Vector2(35, 106)
 
 [node name="ClueSpawn4" type="Node2D" parent="ClueSpawns"]
-position = Vector2(57, 149)
+position = Vector2(63, 139)
 
 [node name="Clues" type="Node" parent="."]
 
