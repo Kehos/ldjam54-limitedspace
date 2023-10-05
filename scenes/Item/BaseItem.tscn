@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx03pkfdnfqiu"]
+[gd_scene load_steps=3 format=3 uid="uid://dx03pkfdnfqiu"]
 
-[ext_resource type="Texture2D" uid="uid://b01w34qy3nrx2" path="res://sprites/item_placeholder.png" id="1_it0xu"]
 [ext_resource type="Script" path="res://scripts/Item/Item.gd" id="2_ew5n8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbaw6"]
@@ -8,8 +7,7 @@ size = Vector2(32, 32)
 
 [node name="Item" type="Sprite2D"]
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_it0xu")
+scale = Vector2(0.4, 0.4)
 script = ExtResource("2_ew5n8")
 
 [node name="ItemArea" type="Area2D" parent="."]
