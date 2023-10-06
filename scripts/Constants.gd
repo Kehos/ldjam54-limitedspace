@@ -55,21 +55,21 @@ var ITEM_DESCRIPTION: Array[String] = [
 ]
 
 var ITEM_CLUE: Array[String] = [
-	"A poster from some gold-trading business", # GOLDEN_KEY
-	"There is a target on the wall from a shooting range", # REVOLVER
-	"Some broken wooden planks, it appears they have been removed with something", # CROWBAR
-	"You can see an empty case from a robbery movie", # LOCKPICK
-	"An alert sign preventing from explosions", # EXPLOSIVE
-	"An old rusted roll of barbed wire", # SHEARS
-	"A ripped page from a furniture catalog, displaying some different doors", # DOORKNOB
-	"An empty identification lanyard", # ID_CARD
-	"The poster of a hackers TV series", # USB
-	"Some pieces that are from a broken toy robot", # ROBOT_HAND
-	"The poster from a western film with a cake and some jail bars on it", # FILE_TOOL
-	"A car advertisement magazine", # FUEL
-	"A diagram of an electrical circuit", # FUSE
-	"A sign that reads 'No more disposable batteries'", # BATTERY
-	"The stock-market page from a newspaper" # MONEY
+	"a poster from some gold-trading business", # GOLDEN_KEY
+	"the target from a shooting range", # REVOLVER
+	"a photo of some broken wooden planks. It appears they have been removed with something", # CROWBAR
+	"a photo of  an empty case from a robbery movie", # LOCKPICK
+	"an alert sign preventing from explosions", # EXPLOSIVE
+	"a photo of an old rusted roll of barbed wire", # SHEARS
+	"a page from a furniture catalog, displaying some different doors", # DOORKNOB
+	"a long form to obtain an ID card", # ID_CARD
+	"the poster of a hackers TV series", # USB
+	"a picture of some pieces that apparently are from a broken toy robot", # ROBOT_HAND
+	"the poster from a western film with a suspicious cake and some jail bars on it", # FILE_TOOL
+	"the cover of a car advertisement magazine", # FUEL
+	"a diagram of an electrical circuit", # FUSE
+	"a sign that reads 'No more disposable batteries'", # BATTERY
+	"the stock-market page from a newspaper" # MONEY
 ]
 
 var DOOR_TEXT: Array[String] = [
