@@ -25,53 +25,55 @@ clueScene = ExtResource("3_ayx12")
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
 offset_right = 160.0
-offset_bottom = 200.0
+offset_bottom = 216.0
 texture = ExtResource("17_xlaai")
 
 [node name="Walls" type="Node" parent="TextureRect"]
 
 [node name="Door" parent="TextureRect/Walls" instance=ExtResource("19_q828k")]
-position = Vector2(78, 31)
+z_index = 1
+position = Vector2(79, 33)
+scale = Vector2(0.88, 0.88)
 
 [node name="WallTop2" parent="TextureRect/Walls" instance=ExtResource("7_e7pfw")]
 position = Vector2(80, 32)
 
 [node name="WallBottom2" parent="TextureRect/Walls" instance=ExtResource("8_u2rox")]
-position = Vector2(80, 144)
+position = Vector2(80, 160)
 rotation = -3.14159
 
 [node name="WallLeft2" parent="TextureRect/Walls" instance=ExtResource("9_c3dmi")]
-position = Vector2(32, 96)
+position = Vector2(32, 112)
 rotation = -1.57079
 
 [node name="WallLeft3" parent="TextureRect/Walls" instance=ExtResource("9_c3dmi")]
-position = Vector2(128, 80)
+position = Vector2(128, 96)
 rotation = -4.71238
 
 [node name="DescriptionBoxBg" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
-offset_top = 160.0
+offset_top = 176.0
 offset_right = 120.0
-offset_bottom = 200.0
+offset_bottom = 216.0
 texture = ExtResource("7_vdw0i")
 
 [node name="ItemBoxBg" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
 offset_left = 120.0
-offset_top = 160.0
+offset_top = 176.0
 offset_right = 160.0
-offset_bottom = 200.0
+offset_bottom = 216.0
 texture = ExtResource("8_uci3y")
 
 [node name="RoomItems" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("18_07pcf")]
-position = Vector2(79, 59)
+position = Vector2(79, 97)
 
 [node name="TextsContainer" type="PanelContainer" parent="."]
-offset_top = 160.0
+offset_top = 176.0
 offset_right = 120.0
-offset_bottom = 200.0
+offset_bottom = 216.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_axah3")
 
 [node name="MarginContainer" type="MarginContainer" parent="TextsContainer"]
@@ -121,9 +123,9 @@ fit_content = true
 
 [node name="Inventory" type="PanelContainer" parent="."]
 offset_left = 120.0
-offset_top = 160.0
+offset_top = 176.0
 offset_right = 160.0
-offset_bottom = 200.0
+offset_bottom = 216.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kjanf")
 
 [node name="MarginContainer" type="MarginContainer" parent="Inventory"]
@@ -159,38 +161,38 @@ text = "[center]Room X[/center]"
 [node name="ItemSpawns" type="Node" parent="."]
 
 [node name="SpawnPoint1" type="Node2D" parent="ItemSpawns"]
-position = Vector2(47, 47)
+position = Vector2(51, 66)
 
 [node name="SpawnPoint2" type="Node2D" parent="ItemSpawns"]
-position = Vector2(120, 39)
+position = Vector2(119, 55)
 
 [node name="SpawnPoint3" type="Node2D" parent="ItemSpawns"]
-position = Vector2(117, 133)
+position = Vector2(117, 147)
 
 [node name="SpawnPoint4" type="Node2D" parent="ItemSpawns"]
-position = Vector2(114, 79)
+position = Vector2(112, 111)
 
 [node name="SpawnPoint5" type="Node2D" parent="ItemSpawns"]
-position = Vector2(40, 80)
+position = Vector2(42, 91)
 
 [node name="SpawnPoint6" type="Node2D" parent="ItemSpawns"]
-position = Vector2(42, 129)
+position = Vector2(43, 148)
 
 [node name="Items" type="Node" parent="."]
 
 [node name="ClueSpawns" type="Node" parent="."]
 
 [node name="ClueSpawn1" type="Node2D" parent="ClueSpawns"]
-position = Vector2(36, 35)
+position = Vector2(38, 56)
 
 [node name="ClueSpawn2" type="Node2D" parent="ClueSpawns"]
-position = Vector2(124, 55)
+position = Vector2(119, 76)
 
 [node name="ClueSpawn3" type="Node2D" parent="ClueSpawns"]
-position = Vector2(35, 106)
+position = Vector2(42, 121)
 
 [node name="ClueSpawn4" type="Node2D" parent="ClueSpawns"]
-position = Vector2(63, 139)
+position = Vector2(72, 145)
 
 [node name="Clues" type="Node" parent="."]
 

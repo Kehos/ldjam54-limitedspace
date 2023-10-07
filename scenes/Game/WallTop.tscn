@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ccf3c5e0v07na" path="res://sprites/Walls/tilemap.png" id="1_o4ky6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ew8"]
-size = Vector2(160, 32)
+size = Vector2(160, 48)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ngi"]
 resource_name = "Walls"
@@ -21,6 +21,9 @@ texture = ExtResource("1_o4ky6")
 1:2/0 = 0
 0:2/0 = 0
 0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_8igjv"]
 sources/0 = SubResource("TileSetAtlasSource_d2ngi")
@@ -29,11 +32,11 @@ sources/0 = SubResource("TileSetAtlasSource_d2ngi")
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_x5ew8")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
 tile_set = SubResource("TileSet_8igjv")
 format = 2
-layer_0/tile_data = PackedInt32Array(-65534, 65536, 1, -65535, 65536, 1, -65536, 65536, 1, -1, 65536, 1, -2, 65536, 1, -3, 65536, 1, -65533, 131072, 1, -4, 0, 1, -65540, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 196608, 2, -65541, 131072, 2, -65532, 0, 3, -5, 196608, 1)
+layer_0/tile_data = PackedInt32Array(-65534, 65536, 1, -65535, 65536, 1, -65536, 65536, 1, -1, 65536, 1, -2, 65536, 1, -3, 65536, 1, -65533, 131072, 1, -4, 0, 1, -65540, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 196608, 2, -65541, 131072, 2, -65532, 0, 3, -5, 196608, 1, 65532, 65536, 3, 3, 131072, 3, 65533, 196608, 3, 65534, 196608, 3, 65535, 196608, 3, 0, 196608, 3, 1, 196608, 3, 2, 196608, 3, 65531, 196608, 1, 4, 0, 3)
