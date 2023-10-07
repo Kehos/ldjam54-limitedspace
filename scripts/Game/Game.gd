@@ -4,7 +4,6 @@ extends Node
 @export var clueScene: PackedScene
 
 var pauseMenuScene = preload("res://scenes/UI/PauseMenu.tscn")
-var gameCompleteMenuScene = preload("res://scenes/UI/GameCompleteMenu.tscn")
 
 @onready var textContent: RichTextLabel = $TextsContainer/MarginContainer/CurrentActionText
 @onready var doorActions: RichTextLabel = $TextsContainer/MarginContainer/DoorActionsText
@@ -16,7 +15,7 @@ var gameCompleteMenuScene = preload("res://scenes/UI/GameCompleteMenu.tscn")
 var roomDoors = []
 var roomItems = []
 var currentRoom = 0
-var maxRoom = 5
+var maxRoom = 1 # TODO - Set to 5
 var goToNextRoomAsked = false
 @onready var roomIDLabel: RichTextLabel = $Inventory/MarginContainer/VBoxContainer/RoomIDLabel
 
@@ -52,6 +51,7 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	get_dungeon_properties()
 	set_current_room_properties()
+	toggle_interactions()
 	
 func _process(_delta):
 	if doorInteractable:
@@ -77,7 +77,12 @@ func _process(_delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		var pauseInstance = pauseMenuScene.instantiate()
+		pauseInstance.game_unpaused.connect(on_game_unpaused)
 		add_child(pauseInstance)
+		toggle_interactions()
+		
+func on_game_unpaused():
+	toggle_interactions()
 	
 func get_dungeon_properties():
 	$"/root/GameBuilder".build_game_rooms()
@@ -94,6 +99,9 @@ func set_current_room_properties():
 	currentRoomItems = roomItems[currentRoom]
 	spawn_items()
 	spawn_clue()
+	
+func toggle_interactions():
+	playerNode.toggle_player_movement()
 	
 func init_door_properties():
 	doorInteractable = false
@@ -147,8 +155,8 @@ func go_to_next_room():
 		playerNode.position = Vector2(playerInitialPosition)
 		
 func game_complete():
-	var gameCompleteInstance = gameCompleteMenuScene.instantiate()
-	add_child(gameCompleteInstance)
+	toggle_interactions()
+	$"/root/LevelManager".finish_game()
 
 # Door
 func _on_player_door_entered():
@@ -203,8 +211,10 @@ func _on_player_item_exited():
 	itemHoveredId = -1
 	itemInteractable = false
 	itemActions.hide()
+	textContent.hide()
 	
 func observe_item():
+	print("observing item")
 	itemActions.hide()
 	textContent.text = Constants.ITEM_DESCRIPTION[itemHoveredId]
 	textContent.show()
@@ -261,6 +271,7 @@ func _on_player_clue_exited():
 	textContent.hide()
 
 func observe_clue():
+	print("observing clue")
 	clueAction.hide()
 	textContent.text = str(cluePrefix, Constants.ITEM_CLUE[roomClues[currentRoom]])
 	textContent.show()

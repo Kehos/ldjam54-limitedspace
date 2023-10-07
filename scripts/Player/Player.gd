@@ -7,12 +7,15 @@ signal item_exited
 signal clue_entered
 signal clue_exited
 
-const SPEED = 150.0
+const SPEED = 100.0
+
+var canMove = false
 
 func _physics_process(_delta):
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = direction * SPEED
-	move_and_slide()
+	if canMove:
+		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		velocity = direction * SPEED
+		move_and_slide()
 
 func _on_area_2d_area_entered(area):
 	if area.name == Constants.DOOR_AREA_NAME:
@@ -29,3 +32,6 @@ func _on_area_2d_area_exited(area):
 		item_exited.emit()
 	if area.name == Constants.CLUE_AREA_NAME:
 		clue_exited.emit()
+		
+func toggle_player_movement():
+	canMove = not canMove
