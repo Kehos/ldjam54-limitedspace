@@ -15,7 +15,7 @@ var pauseMenuScene = preload("res://scenes/UI/PauseMenu.tscn")
 var roomDoors = []
 var roomItems = []
 var currentRoom = 0
-var maxRoom = 1 # TODO - Set to 5
+var maxRoom = 5
 var goToNextRoomAsked = false
 @onready var roomIDLabel: RichTextLabel = $Inventory/MarginContainer/VBoxContainer/RoomIDLabel
 
@@ -185,7 +185,10 @@ func interact_door():
 	
 	if doorIsOpen:
 		goToNextRoomAsked = true
-		textContent.text = "Go to next room? (E)"
+		if (currentRoom + 1) == maxRoom:
+			textContent.text = "Go through the door? (E)"
+		else:
+			textContent.text = "Go to next room? (E)"
 		textContent.show()
 	else:
 		if itemInHand < 0:
@@ -214,7 +217,6 @@ func _on_player_item_exited():
 	textContent.hide()
 	
 func observe_item():
-	print("observing item")
 	itemActions.hide()
 	textContent.text = Constants.ITEM_DESCRIPTION[itemHoveredId]
 	textContent.show()
@@ -271,7 +273,6 @@ func _on_player_clue_exited():
 	textContent.hide()
 
 func observe_clue():
-	print("observing clue")
 	clueAction.hide()
 	textContent.text = str(cluePrefix, Constants.ITEM_CLUE[roomClues[currentRoom]])
 	textContent.show()

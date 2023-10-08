@@ -1,10 +1,42 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcb117jonvgbp"]
+[gd_scene load_steps=18 format=3 uid="uid://bcb117jonvgbp"]
 
 [ext_resource type="PackedScene" uid="uid://qionmpjigwp8" path="res://scenes/UI/UIButton.tscn" id="1_1aon3"]
 [ext_resource type="Script" path="res://scripts/UI/MainMenu.gd" id="1_7fd48"]
 [ext_resource type="PackedScene" uid="uid://h06kcdoi4aqd" path="res://scenes/Game/WallTop.tscn" id="2_q458o"]
 [ext_resource type="PackedScene" uid="uid://dheilki3k0dms" path="res://scenes/Game/Door.tscn" id="3_5wjrr"]
 [ext_resource type="Texture2D" uid="uid://c25g1jhf5avxo" path="res://sprites/UI/title.png" id="4_xstub"]
+[ext_resource type="Texture2D" uid="uid://dw6ggrrr5p118" path="res://sprites/UI/button_small.png" id="6_k5xsh"]
+[ext_resource type="Texture2D" uid="uid://drm362tjoqa05" path="res://sprites/UI/button_small_hover.png" id="7_0q6sj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0xqrk"]
+texture = ExtResource("6_k5xsh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nplfu"]
+texture = ExtResource("7_0q6sj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v171c"]
+texture = ExtResource("7_0q6sj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vxhsm"]
+texture = ExtResource("6_k5xsh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mqmiu"]
+texture = ExtResource("6_k5xsh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2hith"]
+texture = ExtResource("6_k5xsh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0cg1o"]
+texture = ExtResource("7_0q6sj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c1nvf"]
+texture = ExtResource("7_0q6sj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gdexh"]
+texture = ExtResource("6_k5xsh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h7f3o"]
+texture = ExtResource("6_k5xsh")
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_7fd48")
@@ -60,13 +92,30 @@ theme_override_constants/separation = 5
 layout_mode = 2
 text = "Play"
 
-[node name="OptionsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_1aon3")]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="OptionsButton" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_1aon3")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_0xqrk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_nplfu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v171c")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_vxhsm")
+theme_override_styles/focus = SubResource("StyleBoxTexture_mqmiu")
 text = "Options"
 
-[node name="CreditsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_1aon3")]
+[node name="CreditsButton" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_1aon3")]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_2hith")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0cg1o")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_c1nvf")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gdexh")
+theme_override_styles/focus = SubResource("StyleBoxTexture_h7f3o")
 text = "Credits"
+
+[node name="TutorialButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_1aon3")]
+layout_mode = 2
+text = "How to play"
 
 [node name="ExitButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_1aon3")]
 layout_mode = 2
@@ -76,6 +125,7 @@ text = "Quit"
 bus = &"Sound"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

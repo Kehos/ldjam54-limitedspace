@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://brt3wf7ottcwk"]
+
+[ext_resource type="Theme" uid="uid://dqsdviqloysom" path="res://theme/ui_theme.tres" id="1_0ih0o"]
+[ext_resource type="Script" path="res://scripts/UI/TutorialMenu.gd" id="1_2yu35"]
+[ext_resource type="PackedScene" uid="uid://qionmpjigwp8" path="res://scenes/UI/UIButton.tscn" id="2_f7rc3"]
+
+[node name="TutorialMenu" type="CanvasLayer"]
+script = ExtResource("1_2yu35")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -90.0
+offset_right = 60.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CreditsContent" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme = ExtResource("1_0ih0o")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]Find the item that opens each door and escape the dungeon
+You may find some useful clues through your escape. Maybe you should be aware of them
+You may be unable to escape if you leave a useful object a door behind you
+Good luck[center]
+
+[center]Movement
+Arrow keys / WASD
+
+Interactions
+Q - Observe
+E - Interact[center]"
+
+[node name="BackButtoon" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_f7rc3")]
+custom_minimum_size = Vector2(90, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButtoon" to="." method="_on_back_buttoon_pressed"]

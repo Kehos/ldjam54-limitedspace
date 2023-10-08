@@ -44,9 +44,9 @@ layout_mode = 2
 theme = ExtResource("2_dx07k")
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
-text = "[center]A game by[center][center]Pau Aza[center]
+text = "[center]A game by[center][center]Pau Aza (Kehos)[center]
 
-[center]Font - Kenney Pixel[center][center]by Kenney[center]"
+[center]Fonts - Kenney Pixel / Kenney High[center][center]by Kenney[center]"
 
 [node name="BackButtoon" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_rsqgw")]
 layout_mode = 2
