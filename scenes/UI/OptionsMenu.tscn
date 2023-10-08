@@ -1,25 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://b884sa0ovfalp"]
+[gd_scene load_steps=5 format=3 uid="uid://b884sa0ovfalp"]
 
 [ext_resource type="PackedScene" uid="uid://qionmpjigwp8" path="res://scenes/UI/UIButton.tscn" id="1_6eq0w"]
 [ext_resource type="Script" path="res://scripts/UI/OptionsMenu.gd" id="1_wsinr"]
 [ext_resource type="Theme" uid="uid://dqsdviqloysom" path="res://theme/ui_theme.tres" id="2_5ot07"]
+[ext_resource type="PackedScene" uid="uid://bmkwhs0af5613" path="res://scenes/UI/VolumeSlider.tscn" id="3_cggjd"]
 
 [node name="OptionsMenu" type="CanvasLayer"]
 script = ExtResource("1_wsinr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(0, 65)
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -50.0
-offset_top = -32.5
+offset_top = -58.0
 offset_right = 50.0
-offset_bottom = 32.5
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_left = 5
@@ -38,6 +37,26 @@ theme = ExtResource("2_5ot07")
 theme_override_font_sizes/normal_font_size = 15
 bbcode_enabled = true
 text = "[center]Options[center]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 10)
+layout_mode = 2
+theme = ExtResource("2_5ot07")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "Volume"
+
+[node name="VolumeSlider" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_cggjd")]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+bus_name = "Sound"
 
 [node name="BackButtoon" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_6eq0w")]
 layout_mode = 2

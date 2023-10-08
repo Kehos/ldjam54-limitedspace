@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8tmo245r45bp"]
+
+[ext_resource type="Script" path="res://scripts/LevelManager/AudioPlayer.gd" id="1_lw65o"]
+
+[node name="AudioPlayer" type="Node"]
+script = ExtResource("1_lw65o")
+bus_names = Array[String](["Master", "Sound"])

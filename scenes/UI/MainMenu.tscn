@@ -1,24 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcb117jonvgbp"]
+[gd_scene load_steps=6 format=3 uid="uid://bcb117jonvgbp"]
 
 [ext_resource type="PackedScene" uid="uid://qionmpjigwp8" path="res://scenes/UI/UIButton.tscn" id="1_1aon3"]
 [ext_resource type="Script" path="res://scripts/UI/MainMenu.gd" id="1_7fd48"]
+[ext_resource type="PackedScene" uid="uid://h06kcdoi4aqd" path="res://scenes/Game/WallTop.tscn" id="2_q458o"]
+[ext_resource type="PackedScene" uid="uid://dheilki3k0dms" path="res://scenes/Game/Door.tscn" id="3_5wjrr"]
+[ext_resource type="Texture2D" uid="uid://c25g1jhf5avxo" path="res://sprites/UI/title.png" id="4_xstub"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_7fd48")
 
+[node name="Background" type="Node" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WallTop" parent="Background" instance=ExtResource("2_q458o")]
+position = Vector2(80, 95)
+scale = Vector2(2, 2)
+
+[node name="Door" parent="Background" instance=ExtResource("3_5wjrr")]
+z_index = 0
+position = Vector2(80, 98)
+scale = Vector2(1.7, 1.7)
+
+[node name="GameTitle" type="Sprite2D" parent="Background"]
+texture_filter = 1
+position = Vector2(80, 40)
+texture = ExtResource("4_xstub")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(0, 65)
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -50.0
-offset_top = -42.5
+offset_top = -85.0
 offset_right = 50.0
-offset_bottom = 42.5
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_left = 5
@@ -45,6 +71,9 @@ text = "Credits"
 [node name="ExitButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_1aon3")]
 layout_mode = 2
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sound"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
