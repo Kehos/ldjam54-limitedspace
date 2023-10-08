@@ -31,7 +31,6 @@ texture = ExtResource("17_xlaai")
 [node name="Walls" type="Node" parent="TextureRect"]
 
 [node name="Door" parent="TextureRect/Walls" instance=ExtResource("19_q828k")]
-z_index = 1
 position = Vector2(79, 33)
 scale = Vector2(0.88, 0.88)
 
@@ -196,11 +195,9 @@ position = Vector2(72, 145)
 
 [node name="Clues" type="Node" parent="."]
 
-[node name="Node" type="Node" parent="."]
-
 [node name="InventoryItem" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(140, 183)
+position = Vector2(140, 200)
 scale = Vector2(0.4, 0.4)
 
 [connection signal="clue_entered" from="Player" to="." method="_on_player_clue_entered"]

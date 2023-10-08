@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy1j6l1uebvti"
-path="res://.godot/imported/walldoor.png-61c90719209fee55f3ff19292f7d0222.ctex"
+uid="uid://hrcwfagt678f"
+path="res://.godot/imported/larry_spritesheet.png-9385b4f4e3667bb6684a8fb63826589b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/walldoor.png"
-dest_files=["res://.godot/imported/walldoor.png-61c90719209fee55f3ff19292f7d0222.ctex"]
+source_file="res://sprites/Player/larry_spritesheet.png"
+dest_files=["res://.godot/imported/larry_spritesheet.png-9385b4f4e3667bb6684a8fb63826589b.ctex"]
 
 [params]
 

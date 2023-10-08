@@ -15,6 +15,13 @@ func _physics_process(_delta):
 	if canMove:
 		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		velocity = direction * SPEED
+		
+	if velocity == Vector2.ZERO:
+		$AnimationTree.get("parameters/playback").travel("Idle")
+	else:
+		$AnimationTree.get("parameters/playback").travel("Walk")
+		$AnimationTree.set("parameters/Idle/blend_position", velocity)
+		$AnimationTree.set("parameters/Walk/blend_position", velocity)
 		move_and_slide()
 
 func _on_area_2d_area_entered(area):

@@ -6,6 +6,7 @@
 size = Vector2(22.2222, 35.5556)
 
 [node name="Door" type="Node2D"]
+z_index = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
