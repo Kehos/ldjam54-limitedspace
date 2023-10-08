@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal game_unpaused
+
 var optionsMenuScene = preload("res://scenes/UI/OptionsMenu.tscn")
 
 func _ready():
@@ -10,6 +12,7 @@ func unpause(queueFree = true):
 		$MarginContainer.hide()
 		await get_tree().create_timer(0.2).timeout
 		queue_free()
+		game_unpaused.emit()
 	get_tree().paused = false
 
 func _on_resume_button_pressed():
