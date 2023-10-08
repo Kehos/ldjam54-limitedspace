@@ -166,8 +166,18 @@ func go_to_next_room():
 	if currentRoom == maxRoom:
 		game_complete()
 	else:
+		# Disable player interactions
+		toggle_interactions()
+		
+		# Show transition_to_room animation
+		$"/root/SceneTransitionManager".transition_to_room()
+		await get_tree().create_timer(1).timeout
 		set_current_room_properties()
 		playerNode.position = Vector2(playerInitialPosition)
+		
+		# Enable player interactions
+		await get_tree().create_timer(1).timeout
+		toggle_interactions()
 		
 func game_complete():
 	toggle_interactions()
