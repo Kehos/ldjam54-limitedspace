@@ -112,3 +112,4 @@ var DOOR_ACTION: Array[String] = [
 var DOOR_AREA_NAME: String = "DoorArea"
 var ITEM_AREA_NAME: String = "ItemArea"
 var CLUE_AREA_NAME: String = "ClueArea"
+var EMERGENCY_AREA_NAME: String = "EmergencyArea"

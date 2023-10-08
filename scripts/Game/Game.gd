@@ -9,6 +9,7 @@ var pauseMenuScene = preload("res://scenes/UI/PauseMenu.tscn")
 @onready var doorActions: RichTextLabel = $TextsContainer/MarginContainer/DoorActionsText
 @onready var itemActions: RichTextLabel = $TextsContainer/MarginContainer/ItemActionsText
 @onready var clueAction: RichTextLabel = $TextsContainer/MarginContainer/ClueActionText
+@onready var emergencyActions: RichTextLabel = $TextsContainer/MarginContainer/EmergencyActionsText
 @onready var inventoryItem: Sprite2D = $InventoryItem
 
 # Game properties
@@ -46,6 +47,10 @@ var roomClues = []
 var clueInteractable = false
 var cluePrefix = "A piece of paper, it displays ";
 
+# Emergency properties
+var emergencyInteractable = false
+var finishGameAsked = false
+
 var rng = RandomNumberGenerator.new()
 
 func _ready():
@@ -73,6 +78,16 @@ func _process(_delta):
 	if clueInteractable:
 		if Input.is_action_just_pressed("observe"):
 			observe_clue()
+			
+	if emergencyInteractable:
+		if finishGameAsked:
+			if Input.is_action_just_pressed("interact"):
+				finish_game()
+		else:
+			if Input.is_action_just_pressed("observe"):
+				observe_emergency()
+			if Input.is_action_just_pressed("interact"):
+				interact_emergency()
 			
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
@@ -276,3 +291,49 @@ func observe_clue():
 	clueAction.hide()
 	textContent.text = str(cluePrefix, Constants.ITEM_CLUE[roomClues[currentRoom]])
 	textContent.show()
+
+# Emergency button
+func _on_player_emergency_entered():
+	emergencyInteractable = true
+	textContent.hide()
+	doorActions.hide()
+	itemActions.hide()
+	clueAction.hide()
+	emergencyActions.show()
+
+func _on_player_emergency_exited():
+	finishGameAsked = false
+	emergencyInteractable = false
+	emergencyActions.hide()
+	textContent.hide()
+	
+func observe_emergency():
+	emergencyActions.hide()
+	textContent.text = "A red button on the wall"
+	textContent.show()
+	
+func interact_emergency():
+	emergencyActions.hide()
+	finishGameAsked = true
+	textContent.text = check_current_room_completable()
+	textContent.show()
+	
+func check_current_room_completable():
+	var buttonText = "Are you sure you want to press the button?"
+	var canContinue = false
+	
+	# Check if items on the floor can open the door
+	for i in itemsContainer.get_children():
+		if i.item_index == currentRoomID:
+			buttonText = str(buttonText, " Make sure you checked all you can do.")
+			canContinue = true
+	
+	# Check if item in hand can open the door
+	if not canContinue and itemInHand == currentRoomID:
+		buttonText = str(buttonText, " Make sure you checked all you can do.")
+	
+	return str(buttonText, " If you press the button, you will lose the game.")
+	
+func finish_game():
+	toggle_interactions()
+	$"/root/LevelManager".finish_game(true)

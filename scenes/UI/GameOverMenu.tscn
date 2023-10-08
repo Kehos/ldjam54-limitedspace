@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://gsx2fld48oo2"]
+
+[ext_resource type="Script" path="res://scripts/UI/GameOverMenu.gd" id="1_cjbjd"]
+[ext_resource type="Theme" uid="uid://dqsdviqloysom" path="res://theme/ui_theme.tres" id="1_qp0qo"]
+[ext_resource type="PackedScene" uid="uid://qionmpjigwp8" path="res://scenes/UI/UIButton.tscn" id="2_prucn"]
+[ext_resource type="FontFile" uid="uid://b03l8d6cx1yk8" path="res://fonts/Kenney Pixel.ttf" id="3_rg1t3"]
+
+[node name="GameOverMenu" type="CanvasLayer"]
+script = ExtResource("1_cjbjd")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(100, 65)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GameCompleteLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 13)
+layout_mode = 2
+theme = ExtResource("1_qp0qo")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "[center]Game over[center]"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_rg1t3")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]You couldn't escape[center]"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ReplayButton" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_prucn")]
+layout_mode = 2
+text = "Replay"
+
+[node name="MainMenuButton" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_prucn")]
+layout_mode = 2
+text = "Main menu"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

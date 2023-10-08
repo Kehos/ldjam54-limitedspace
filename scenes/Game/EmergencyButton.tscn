@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c224hqmc2o5uu"]
+
+[ext_resource type="Texture2D" uid="uid://cyjdaybkffjqa" path="res://sprites/Door/emergency.png" id="1_kurvs"]
+[ext_resource type="Script" path="res://scripts/Game/EmergencyButton.gd" id="2_t4qeo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6r4s"]
+size = Vector2(24, 28)
+
+[node name="EmergencyButton" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_kurvs")
+script = ExtResource("2_t4qeo")
+
+[node name="EmergencyArea" type="Area2D" parent="."]
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EmergencyArea"]
+shape = SubResource("RectangleShape2D_a6r4s")
+
+[connection signal="area_entered" from="EmergencyArea" to="." method="_on_emergency_area_area_entered"]
+[connection signal="area_exited" from="EmergencyArea" to="." method="_on_emergency_area_area_exited"]

@@ -6,6 +6,8 @@ signal item_entered
 signal item_exited
 signal clue_entered
 signal clue_exited
+signal emergency_entered
+signal emergency_exited
 
 const SPEED = 100.0
 
@@ -42,3 +44,9 @@ func _on_area_2d_area_exited(area):
 		
 func toggle_player_movement():
 	canMove = not canMove
+
+func _on_emergency_area_2d_area_entered(_area):
+	emergency_entered.emit()
+
+func _on_emergency_area_2d_area_exited(_area):
+	emergency_exited.emit()
