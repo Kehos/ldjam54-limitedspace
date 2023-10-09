@@ -13,9 +13,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -50.0
-offset_top = -77.0
-offset_right = 50.0
+offset_left = -77.0
+offset_top = -85.0
+offset_right = 77.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -29,27 +29,39 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="CreditsTitle" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 13)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme = ExtResource("2_dx07k")
-theme_override_font_sizes/normal_font_size = 15
-bbcode_enabled = true
-text = "[center]Credits[center]"
 
-[node name="CreditsContent" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 42)
+[node name="CreditsContent" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 42)
 layout_mode = 2
 theme = ExtResource("2_dx07k")
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "[center]A game by[center][center]Pau Aza (Kehos)[center]
 
-[center]Fonts - Kenney Pixel / Kenney High[center][center]by Kenney[center]"
+[center]Fonts by Kenney
+Kenney Pixel
+Kenney High[center]"
+
+[node name="CreditsContent2" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 42)
+layout_mode = 2
+theme = ExtResource("2_dx07k")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]Music[center][center]Ultimate game music collection[center]
+
+[center]SFX
+Universal sound FX[center]"
 
 [node name="BackButtoon" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_rsqgw")]
+custom_minimum_size = Vector2(90, 15)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Main menu"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackButtoon" to="." method="_on_back_buttoon_pressed"]

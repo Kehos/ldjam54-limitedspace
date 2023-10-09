@@ -11,6 +11,9 @@ var pauseMenuScene = preload("res://scenes/UI/PauseMenu.tscn")
 @onready var clueAction: RichTextLabel = $TextsContainer/MarginContainer/ClueActionText
 @onready var emergencyActions: RichTextLabel = $TextsContainer/MarginContainer/EmergencyActionsText
 @onready var inventoryItem: Sprite2D = $InventoryItem
+@onready var doorOpenAudio: AudioStreamPlayer = $SFX/DoorOpen
+@onready var noteReadAudio: AudioStreamPlayer = $SFX/NoteRead
+@onready var pickObjectAudio: AudioStreamPlayer = $SFX/PickObject
 
 # Game properties
 var roomDoors = []
@@ -221,6 +224,7 @@ func interact_door():
 		elif itemInHand == currentRoomID:
 			textContent.text = Constants.DOOR_ACTION[currentRoomID]
 			doorIsOpen = true
+			doorOpenAudio.play()
 			discard_item()
 		else:
 			textContent.text = "This does not work here"
@@ -247,6 +251,7 @@ func observe_item():
 	textContent.show()
 	
 func pick_item():
+	pickObjectAudio.play()
 	itemActions.hide()
 	
 	# Remove item and drop if had one in hand
@@ -298,6 +303,7 @@ func _on_player_clue_exited():
 	textContent.hide()
 
 func observe_clue():
+	noteReadAudio.play()
 	clueAction.hide()
 	textContent.text = str(cluePrefix, Constants.ITEM_CLUE[roomClues[currentRoom]])
 	textContent.show()

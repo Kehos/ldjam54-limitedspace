@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcb117jonvgbp"]
+[gd_scene load_steps=19 format=3 uid="uid://bcb117jonvgbp"]
 
 [ext_resource type="PackedScene" uid="uid://qionmpjigwp8" path="res://scenes/UI/UIButton.tscn" id="1_1aon3"]
 [ext_resource type="Script" path="res://scripts/UI/MainMenu.gd" id="1_7fd48"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c25g1jhf5avxo" path="res://sprites/UI/title.png" id="4_xstub"]
 [ext_resource type="Texture2D" uid="uid://dw6ggrrr5p118" path="res://sprites/UI/button_small.png" id="6_k5xsh"]
 [ext_resource type="Texture2D" uid="uid://drm362tjoqa05" path="res://sprites/UI/button_small_hover.png" id="7_0q6sj"]
+[ext_resource type="AudioStream" uid="uid://chhg6fkuulh28" path="res://sound/music/mainmenu.ogg" id="8_y7pvq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0xqrk"]
 texture = ExtResource("6_k5xsh")
@@ -122,6 +123,8 @@ layout_mode = 2
 text = "Quit"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_y7pvq")
+autoplay = true
 bus = &"Sound"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

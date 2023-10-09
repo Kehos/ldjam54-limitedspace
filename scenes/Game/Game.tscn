@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cu7av6n17dgcx"]
+[gd_scene load_steps=20 format=3 uid="uid://cu7av6n17dgcx"]
 
 [ext_resource type="Script" path="res://scripts/Game/Game.gd" id="1_my73j"]
 [ext_resource type="PackedScene" uid="uid://dx03pkfdnfqiu" path="res://scenes/Item/BaseItem.tscn" id="2_4jxkh"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://c6bxcjiidycv7" path="res://scenes/Game/WallSide.tscn" id="9_c3dmi"]
 [ext_resource type="PackedScene" uid="uid://c224hqmc2o5uu" path="res://scenes/Game/EmergencyButton.tscn" id="9_wj0el"]
 [ext_resource type="FontFile" uid="uid://b03l8d6cx1yk8" path="res://fonts/Kenney Pixel.ttf" id="10_1gu1t"]
+[ext_resource type="AudioStream" uid="uid://6dvslsh08kap" path="res://sound/music/gameplay.ogg" id="14_kwwht"]
+[ext_resource type="AudioStream" uid="uid://dgunq2smbgmfi" path="res://sound/sfx/door.ogg" id="15_qaro8"]
+[ext_resource type="AudioStream" uid="uid://cgdedbsouopo0" path="res://sound/sfx/read_note.ogg" id="16_ek8hn"]
+[ext_resource type="AudioStream" uid="uid://5qajhurstr2o" path="res://sound/sfx/pick_object.ogg" id="17_67w07"]
 [ext_resource type="Texture2D" uid="uid://chvlxbofl8apy" path="res://sprites/canvas.png" id="17_xlaai"]
 [ext_resource type="PackedScene" uid="uid://c1nrbckcck5ta" path="res://scenes/Player/Player.tscn" id="18_07pcf"]
 [ext_resource type="PackedScene" uid="uid://dheilki3k0dms" path="res://scenes/Game/Door.tscn" id="19_q828k"]
@@ -214,6 +218,23 @@ position = Vector2(67, 143)
 texture_filter = 1
 position = Vector2(140, 200)
 scale = Vector2(0.4, 0.4)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("14_kwwht")
+autoplay = true
+bus = &"Sound"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="DoorOpen" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("15_qaro8")
+
+[node name="NoteRead" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("16_ek8hn")
+
+[node name="PickObject" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("17_67w07")
 
 [connection signal="clue_entered" from="Player" to="." method="_on_player_clue_entered"]
 [connection signal="clue_exited" from="Player" to="." method="_on_player_clue_exited"]
