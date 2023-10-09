@@ -92,6 +92,8 @@ theme_override_constants/margin_bottom = 7
 
 [node name="CurrentActionText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
 visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.737255, 0.737255, 0.737255, 1)
 theme_override_fonts/normal_font = ExtResource("10_1gu1t")
@@ -99,28 +101,29 @@ theme_override_font_sizes/normal_font_size = 8
 
 [node name="ItemActionsText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
 visible = false
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0.737255, 0.737255, 0.737255, 1)
 theme_override_fonts/normal_font = ExtResource("10_1gu1t")
 theme_override_font_sizes/normal_font_size = 8
 text = "Observe (Q)
-
 Pick (E)"
 fit_content = true
 
 [node name="DoorActionsText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
 visible = false
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0.737255, 0.737255, 0.737255, 1)
 theme_override_fonts/normal_font = ExtResource("10_1gu1t")
 theme_override_font_sizes/normal_font_size = 8
 text = "Observe (Q)
-
 Interact (E)"
 fit_content = true
 
 [node name="ClueActionText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
 visible = false
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0.737255, 0.737255, 0.737255, 1)
 theme_override_fonts/normal_font = ExtResource("10_1gu1t")
@@ -130,12 +133,12 @@ fit_content = true
 
 [node name="EmergencyActionsText" type="RichTextLabel" parent="TextsContainer/MarginContainer"]
 visible = false
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0.737255, 0.737255, 0.737255, 1)
 theme_override_fonts/normal_font = ExtResource("10_1gu1t")
 theme_override_font_sizes/normal_font_size = 8
 text = "Observe (Q)
-
 Interact (E)"
 fit_content = true
 
@@ -158,6 +161,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="InventoryTitleLabel" type="RichTextLabel" parent="Inventory/MarginContainer/VBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.737255, 0.737255, 0.737255, 1)
@@ -168,6 +172,7 @@ text = "[center]Item[/center]"
 
 [node name="RoomIDLabel" type="RichTextLabel" parent="Inventory/MarginContainer/VBoxContainer"]
 visible = false
+texture_filter = 1
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.509804, 0.509804, 0.509804, 1)

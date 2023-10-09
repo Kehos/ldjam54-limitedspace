@@ -92,7 +92,7 @@ var DOOR_TEXT: Array[String] = [
 
 var DOOR_ACTION: Array[String] = [
 	"Wasn't that logic? Of course the door opens", # GOLDEN_KEY
-	"You walk two steps backwars. After a precise shot, the revolver jams and the door opens", # REVOLVER
+	"You walk two steps backwards. After a precise shot, the revolver jams and the door opens", # REVOLVER
 	"After removing the last nail, the crowbar breaks and now it is useless. You're free to continue", # CROWBAR
 	"You spend some time with the lockpicks, but in the end the door opens", # LOCKPICK
 	"You stick the explosive to the adhesive and stay away. There is a surprisingly small explosion and the door opens", # EXPLOSIVE

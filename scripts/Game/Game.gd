@@ -21,7 +21,6 @@ var roomItems = []
 var currentRoom = 0
 var maxRoom = 5
 var goToNextRoomAsked = false
-@onready var roomIDLabel: RichTextLabel = $Inventory/MarginContainer/VBoxContainer/RoomIDLabel
 
 # Current room properties
 var currentRoomItems = []
@@ -111,7 +110,6 @@ func get_dungeon_properties():
 		spawnPointStatus.append(-1)
 	
 func set_current_room_properties():
-	roomIDLabel.text = str("Room ", currentRoom)
 	init_door_properties()
 	currentRoomID = roomDoors[currentRoom]
 	currentRoomItems = roomItems[currentRoom]

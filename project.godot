@@ -13,7 +13,8 @@ config_version=5
 config/name="A Door Behind"
 run/main_scene="res://scenes/UI/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://sprites/Build/door.png"
+config/windows_native_icon="res://sprites/Build/door.ico"
 
 [autoload]
 
@@ -29,6 +30,8 @@ window/size/viewport_width=160
 window/size/viewport_height=216
 window/size/mode=2
 window/stretch/mode="canvas_items"
+window/icon="res://icon.svg"
+window/windows_native_icon=""
 
 [input]
 
